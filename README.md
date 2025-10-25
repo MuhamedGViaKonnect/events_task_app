@@ -109,4 +109,4 @@ Profile tab & Logout
 Mohamed Gheeta
 React Native Developer
 🔗 LinkedIn https://www.linkedin.com/in/mohamed-gheeta-4733a1218/
-| 💻 GitHub https://github.com/MuhamedGViaKonnect/events_task_app
+| 💻 GitHub https://github.com/MuhamedGViaKonnect/events_task_app/
