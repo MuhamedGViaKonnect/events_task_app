@@ -81,19 +81,32 @@ Redirects user to the Login screen.
 
 🎥 Include a short screen recording showing:
 
-Sign Up / Login
+Sign Up / Login ---------->
 
-Event List
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-10-25 at 12 08 01" src="https://github.com/user-attachments/assets/1e9aa24c-0532-4953-bf02-cd479e92f227" />
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-10-25 at 12 08 06" src="https://github.com/user-attachments/assets/a11b5e5a-dcd0-49ec-9a29-0e0809075c46" />
 
-Event Details & Registration
+
+Event List------->
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-10-25 at 12 09 06" src="https://github.com/user-attachments/assets/d1468345-5b76-4e33-b016-40ee8ca93171" />
+
+
+
+Event Details & Registration------>
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-10-25 at 15 16 18" src="https://github.com/user-attachments/assets/660a02a9-7872-4253-920a-6728212969c8" />
+
 
 Dashboard view
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-10-25 at 12 09 15" src="https://github.com/user-attachments/assets/5d6ab407-0566-4eda-b921-79b1d19dda94" />
+
 
 Profile tab & Logout
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-10-25 at 12 09 18" src="https://github.com/user-attachments/assets/c264e0da-8b46-4069-bffe-31ac8f667ecf" />
+
 
 🧑‍💻 Author
 
 Mohamed Gheeta
 React Native Developer
-🔗 LinkedIn
-| 💻 GitHub
+🔗 LinkedIn https://www.linkedin.com/in/mohamed-gheeta-4733a1218/
+| 💻 GitHub https://github.com/MuhamedGViaKonnect/events_task_app
