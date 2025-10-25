@@ -109,5 +109,7 @@ Demo Video----------> https://drive.google.com/file/d/1wbFuRPIc_93501eTag7FKA_kj
 
 Mohamed Gheeta
 React Native Developer
+
 🔗 LinkedIn https://www.linkedin.com/in/mohamed-gheeta-4733a1218/
+
 | 💻 GitHub https://github.com/MuhamedGViaKonnect/events_task_app/
