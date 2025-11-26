@@ -17,7 +17,7 @@ const useGetEvents = () => {
       setLoading(true);
       const response = await axios({
         method: 'GET',
-        path: 'events' as any
+        path: 'events' as any,
       });
       setEvents(response.data);
       setError(null);

@@ -1,6 +1,5 @@
 import axios, { Method, AxiosHeaders } from 'axios';
 
-
 import { APIS, apisTypes } from './apiUrl';
 
 const BASE_URL = process.env.BASE_URL || '';

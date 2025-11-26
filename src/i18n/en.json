@@ -1,4 +1,17 @@
 {
   "Login": "Login",
-  "hello": "hello"
+  "hello": "hello",
+  "title": "List of Services",
+  "loading": "Loading services...",
+  "profile": {
+    "myProfile": "My Profile",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "logout": "Logout"
+  },
+  "tabs": {
+    "services": "Services",
+    "profile": "Profile"
+  }
 }

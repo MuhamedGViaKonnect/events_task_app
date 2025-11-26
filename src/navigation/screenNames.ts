@@ -8,7 +8,7 @@ const ScreenNames = {
   Splash: 'SplashScreen',
   BottomTabs: 'BottomTabs',
   Profile: 'Profile',
-  Events: 'Events',
+  Services: 'Services',
   DashBoard: 'DashBoard',
   CardDetails: 'CardDetails',
 

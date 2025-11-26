@@ -39,4 +39,25 @@ export default StyleSheet.create({
     color: Colors.black,
     marginTop: 5,
   },
+  calendarContainer: {
+  marginTop: 20,
+  backgroundColor: "#fff",
+  borderRadius: 12,
+  padding: 10,
+  elevation: 3,
+},
+
+selectedDateBox: {
+  marginTop: 20,
+  padding: 12,
+  backgroundColor: "#eef9f2",
+  borderRadius: 10,
+},
+
+selectedInfo: {
+  fontSize: 16,
+  fontWeight: "500",
+  color: "#0E9F6E",
+},
+
 });

@@ -7,7 +7,7 @@ import Card from '@components/card';
 import { useNavigation } from '@react-navigation/native';
 import screenNames from '@navigation/screenNames';
 import { EventDataType } from '../../types';
-import { registerEvent, removeEvent } from '@store/slices/cardsSlice';
+import { registerEvent, removeEvent } from '@store/slices/settingSlice';
 
 const DashBoard = () => {
   const navigation = useNavigation<any>();

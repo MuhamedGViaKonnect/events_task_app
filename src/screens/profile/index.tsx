@@ -5,28 +5,48 @@ import {
   TouchableOpacity,
   Alert,
   ActivityIndicator,
+  I18nManager,
 } from 'react-native';
 import styles from './styles';
+import RNRestart from "react-native-restart";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '@common/colors';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-import { clearEvents } from '@store/slices/cardsSlice';
+import { setLanguage } from '@store/slices/settingSlice';
 
 import screenNames from '@navigation/screenNames';
+import { useTranslation } from 'react-i18next';
+
+
 
 const ProfileScreen = () => {
   const navigation = useNavigation<any>();
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === 'rtl';
   const [user, setUser] = useState<any>(null);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+ 
+const toggleLang = async () => {
+    const isArLang = i18n.language === 'en' ? true : false;
+    const lng = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(lng);
+    dispatch(setLanguage(lng)); // save in Redux
+    await I18nManager.allowRTL(isArLang);
+    await I18nManager.forceRTL(isArLang);
+    setTimeout(() => {
+      RNRestart.Restart();
+    }, 300);
+  };
 
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const storedUser = await AsyncStorage.getItem('user');
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
+        const savedUser = await AsyncStorage.getItem('userData');
+        if (savedUser) {
+          setUser(JSON.parse(savedUser));
         }
       } catch (err) {
         console.error('Error loading user:', err);
@@ -45,8 +65,8 @@ const ProfileScreen = () => {
         style: 'destructive',
         onPress: async () => {
           try {
-            await AsyncStorage.removeItem('user');
-            dispatch(clearEvents());
+            await AsyncStorage.multiRemove(['token','userData']);
+            // dispatch(clearEvents());
 
             navigation.reset({
               index: 0,
@@ -59,21 +79,37 @@ const ProfileScreen = () => {
       },
     ]);
   };
-
+ const customer = user?.customerResponse;
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <Text style={styles.headerTxt}>My Profile </Text>
+        <Text style={styles.headerTxt}>{t('profile.myProfile')} </Text>
 
         {user ? (
           <View style={{ marginTop: 20 }}>
-            <Text style={styles.infoTxt}>First Name: {user.firstName}</Text>
-            <Text style={styles.infoTxt}>Last Name: {user.lastName}</Text>
-            <Text style={styles.infoTxt}>Email: {user.email}</Text>
+            <Text style={[styles.infoTxt, { writingDirection: isRTL ? 'rtl' : 'ltr' }]}>
+  {t('profile.name')}: {customer?.customerName}
+</Text>
+<Text style={[styles.infoTxt, { writingDirection: isRTL ? 'rtl' : 'ltr' }]}>
+  {t('profile.email')}: {customer?.customerEmail}
+</Text>
+<Text style={[styles.infoTxt, { writingDirection: isRTL ? 'rtl' : 'ltr' }]}>
+  {t('profile.phone')}: {customer?.customerPhone}
+</Text>
+
           </View>
         ) : (
           <ActivityIndicator size="large" color={Colors.primary} />
         )}
+
+         <TouchableOpacity
+    style={[styles.button, { backgroundColor: Colors.primary, marginTop: 10 }]}
+    onPress={toggleLang}
+  >
+    <Text style={[styles.buttonTxt, { color: Colors.white }]}>
+      {i18n.language === 'en' ? ' تغيير الي العربية' : 'Change to english'}
+    </Text>
+  </TouchableOpacity>
 
         <TouchableOpacity
           style={[
@@ -86,7 +122,7 @@ const ProfileScreen = () => {
             <ActivityIndicator color={Colors.white} />
           ) : (
             <Text style={[styles.buttonTxt, { color: Colors.white }]}>
-              Logout
+              {t('profile.logout')}
             </Text>
           )}
         </TouchableOpacity>

@@ -2,9 +2,9 @@
 
 import { combineReducers } from '@reduxjs/toolkit';
 
-import cardsReducer from './slices/cardsSlice';
+import settingReducer from './slices/settingSlice';
 const rootReducer = combineReducers({
-  cards: cardsReducer,
+  setting: settingReducer,
 });
 
 export default rootReducer;

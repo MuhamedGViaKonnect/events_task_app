@@ -58,44 +58,56 @@ const SigninScreen = () => {
   };
 
   const handleLogin = async () => {
-    setErrors({}); // مسح الأخطاء السابقة
-    if (
-      isRequired(email) ||
-      !isValidEmail(email) ||
-      isRequired(password) ||
-      password.length < 6
-    ) {
-      validateField('email', email);
-      validateField('password', password);
-      return;
+  setErrors({});
+  if (
+    isRequired(email) ||
+    !isValidEmail(email) ||
+    isRequired(password) ||
+    password.length < 6
+  ) {
+    validateField('email', email);
+    validateField('password', password);
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await axios.post(
+      'https://e7gezly-1054846845303.us-central1.run.app/api/v1/auth/login',
+      {
+        email,
+        password,
+      },
+    );
+
+    if (response?.data?.responseCode === 200) {
+      const userData = response.data.data;
+
+ 
+      await AsyncStorage.setItem('token', userData.token);
+      await AsyncStorage.setItem('refreshToken', userData.refreshToken);
+      await AsyncStorage.setItem('userData', JSON.stringify(userData));
+
+      Alert.alert('Login Successful', `Welcome, ${userData.username}!`);
+      navigation.navigate(screenNames.BottomTabs);
+    } else {
+      Alert.alert('Login Failed', response.data.responseMessage);
     }
+  } catch (error: any) {
+    console.log('Login Error:', error?.response?.data || error?.message);
 
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        'https://68f7c4eaf7fb897c66170bcc.mockapi.io/users',
-      );
-      const users = response.data;
-
-      const user = users.find(
-        (u: { email: string; password: string }) =>
-          u.email === email && u.password === password,
-      );
-
-      if (user) {
-        await AsyncStorage.setItem('user', JSON.stringify(user));
-        Alert.alert('Login Successful', `Welcome, ${user.name || user.email}!`);
-        navigation.navigate(screenNames.BottomTabs);
-      } else {
-        Alert.alert('Login Failed', 'Email or password is incorrect.');
-      }
-    } catch (err) {
-      console.error(err);
-      Alert.alert('Error', 'Something went wrong. Please try again.');
-    } finally {
-      setLoading(false);
+    // Error from server
+    if (error?.response?.data?.responseMessage) {
+      Alert.alert('Error', error.response.data.responseMessage);
+    } else {
+      Alert.alert('Error', 'Something went wrong.');
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const isFormValid =
     !isRequired(email) &&
@@ -161,14 +173,7 @@ const SigninScreen = () => {
           )}
         </TouchableOpacity>
 
-        <View style={styles.footerContainer}>
-          <Text style={styles.footerTxt}>Don’t have an account?</Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(screenNames.Singup)}
-          >
-            <Text style={styles.signupTxt}> Sign up</Text>
-          </TouchableOpacity>
-        </View>
+      
       </View>
     </KeyboardAvoidingView>
   );

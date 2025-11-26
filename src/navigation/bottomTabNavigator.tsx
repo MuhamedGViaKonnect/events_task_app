@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ScreenNames from './screenNames';
 import ProfileScreen from '@screens/profile';
-import Events from '@screens/Events';
+import Services from '@screens/Services';
 import Colors from '@common/colors';
-import DashBoard from '@screens/DashBoard';
+import { t } from 'i18next';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +29,7 @@ const BottomTabNavigator = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: string = '';
 
-          if (route.name === ScreenNames.Events) {
+          if (route.name === ScreenNames.Services) {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === ScreenNames.DashBoard) {
             iconName = focused ? 'heart' : 'heart-outline';
@@ -43,9 +43,9 @@ const BottomTabNavigator = () => {
         tabBarInactiveTintColor: Colors.gray,
       })}
     >
-      <Tab.Screen name={ScreenNames.Events} component={Events} />
-      <Tab.Screen name={ScreenNames.DashBoard} component={DashBoard} />
-      <Tab.Screen name={ScreenNames.Profile} component={ProfileScreen} />
+      <Tab.Screen name={ScreenNames.Services} component={Services} options={{ tabBarLabel: t('tabs.services') }}/>
+      {/* <Tab.Screen name={ScreenNames.DashBoard} component={DashBoard} /> */}
+      <Tab.Screen name={ScreenNames.Profile} component={ProfileScreen} options={{ tabBarLabel: t('tabs.profile') }}/>
     </Tab.Navigator>
   );
 };
